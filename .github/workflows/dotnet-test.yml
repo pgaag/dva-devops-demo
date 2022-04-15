@@ -1,4 +1,4 @@
-name: dotnet tests
+name: dotnet test
 
 on:
   push:
