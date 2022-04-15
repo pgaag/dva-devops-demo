@@ -23,8 +23,8 @@ jobs:
       run: dotnet test --logger "trx;LogFileName=test-results.trx"
     - name: Test Report
       uses: dorny/test-reporter@v1
-      if: success() || failure()                          # run this step even if previous step failed
+      if: success() || failure()                                            # run this step even if previous step failed
       with:
-        name: Dotnet Tests                                # Name of the check run which will be created
-        path: 'TestResults/net6.0/*.trx'                  # Path to test results
-        reporter: dotnet-trx                              # Format of test results
+        name: Dotnet Tests                                                  # Name of the check run which will be created
+        path: 'DevOpsDemo.Tests/TestResults/net6.0/*.trx'                   # Path to test results
+        reporter: dotnet-trx                                                # Format of test results
