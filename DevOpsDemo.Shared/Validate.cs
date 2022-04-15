@@ -4,7 +4,7 @@ namespace DevOpsDemo.Shared;
 
 public static class Validate
 {
-    public static T NotNull<T>(Expression<Func<T>> toCheck) where T : class
+    public static T NotNull<T>(Expression<Func<T>> toCheck) where T : class?
     {
         if (toCheck == null)
         {

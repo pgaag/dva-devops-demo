@@ -16,12 +16,12 @@ public class DevOpsController : ControllerBase
     {
         "Continuous Integration", "Continuous Development", "Monitoring", "Testing", "Wiki"
     };
-    
-    private static readonly string Class = "DVA-Praktikum";
-    
-    private readonly ILogger<DevOpsController> _logger;
 
-    public DevOpsController(ILogger<DevOpsController> logger)
+    private const string Class = "DVA-Praktikum";
+
+    private readonly ILogger<DevOpsController>? _logger;
+
+    public DevOpsController(ILogger<DevOpsController>? logger)
     {
         _logger = Validate.NotNull(() => logger);
     }
