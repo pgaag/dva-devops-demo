@@ -1,4 +1,4 @@
-name: 'Sonar-Cloud-Build-Validation'
+name: 'build validation'
 on:
   push:
     branches:
