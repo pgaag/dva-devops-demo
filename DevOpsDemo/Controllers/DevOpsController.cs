@@ -1,4 +1,5 @@
-﻿using DevOpsDemo.Shared;
+﻿using DevOpsDemo.Model;
+using DevOpsDemo.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevOpsDemo.Controllers;
@@ -9,7 +10,7 @@ public class DevOpsController : ControllerBase
 {
     private static readonly string[] Contributers = 
     {
-        "Philipp", "Marcel", "Roman", "Fabian", "Daniel", "Roman"
+        "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
     };
     
     private static readonly string[] Practices = 
@@ -18,6 +19,8 @@ public class DevOpsController : ControllerBase
     };
 
     private const string Class = "DVA-Praktikum";
+
+    private const string Unused = null;
 
     private readonly ILogger<DevOpsController>? _logger;
 
@@ -33,7 +36,8 @@ public class DevOpsController : ControllerBase
         {
             Contributers = Contributers,
             Pratices = Practices,
-            ClassName = Class
+            ClassName = Class,
+            ProjectState = State.Ongoing
         };
     }
     
@@ -46,7 +50,21 @@ public class DevOpsController : ControllerBase
     [HttpGet("practices")]
     public IEnumerable<string> GetPractices()
     {
-        return Contributers;
+        if (Contributers != null)
+        {
+            return Contributers;
+        }
+        return new List<string>() { "None Given"};
+    }
+    
+    [HttpGet("practicesv2")]
+    public IEnumerable<string> GetPracticesDuplication()
+    {
+        if (Contributers != null)
+        {
+            return Contributers;
+        }
+        return new List<string>() { "None Given"};
     }
     
     [HttpGet("class")]
