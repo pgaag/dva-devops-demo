@@ -23,7 +23,7 @@ public class DevOpsControllerTests
         
         // Act
         var result = controller.GetContributers();
-        var resultObj = result.Result as OkObjectResult;
+        var resultObj = result as OkObjectResult;
         
         // Assert
         Assert.NotNull(resultObj?.Value);
@@ -39,7 +39,7 @@ public class DevOpsControllerTests
         
         // Act
         var result = controller.GetClass();
-        var resultObj = result.Result as OkObjectResult;
+        var resultObj = result as OkObjectResult;
         
         // Assert
         Assert.NotNull(resultObj?.Value);
@@ -56,7 +56,7 @@ public class DevOpsControllerTests
         
         // Act
         var result = controller.GetPractices();
-        var resultObj = result.Result as StatusCodeResult;
+        var resultObj = result as StatusCodeResult;
         
         // Assert
         Assert.Equal(404, resultObj.StatusCode);
@@ -71,7 +71,7 @@ public class DevOpsControllerTests
         
         // Act
         var result = controller.GetPractices();
-        var resultObj = result.Result as OkObjectResult;
+        var resultObj = result as OkObjectResult;
         
         // Assert
         Assert.NotNull(resultObj?.Value);

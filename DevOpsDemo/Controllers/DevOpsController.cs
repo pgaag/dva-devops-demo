@@ -30,7 +30,7 @@ public class DevOpsController : ControllerBase
     }
 
     [HttpGet("info")]
-    public async Task<IActionResult> GetDevOpsInfo()
+    public IActionResult GetDevOpsInfo()
     {
         return Ok(new DevOpsInfo()
         {
@@ -42,13 +42,13 @@ public class DevOpsController : ControllerBase
     }
     
     [HttpGet("contributers")]
-    public async Task<IActionResult> GetContributers()
+    public IActionResult GetContributers()
     {
         return Ok(Contributers);
     }
     
     [HttpGet("practices")]
-    public async Task<IActionResult> GetPractices()
+    public IActionResult GetPractices()
     {
         if (Practices != null)
         {
@@ -58,7 +58,7 @@ public class DevOpsController : ControllerBase
     }
     
     [HttpGet("practicesv2")]
-    public async Task<IActionResult> GetPracticesDuplication()
+    public IActionResult GetPracticesDuplication()
     {
         if (Practices != null)
         {
@@ -68,7 +68,7 @@ public class DevOpsController : ControllerBase
     }
     
     [HttpGet("class")]
-    public async Task<IActionResult> GetClass()
+    public IActionResult GetClass()
     {
         return Ok(Class);
     }
