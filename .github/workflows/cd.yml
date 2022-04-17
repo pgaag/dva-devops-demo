@@ -6,9 +6,9 @@ env:
   DOTNET_VERSION: '6.x'                         # set this to the .NET Core version to use
 
 on:
-  push:
+  create:
     tags:
-      - "v*.*.*"
+      - v*.*.*
 
 jobs:
   build:
