@@ -1,4 +1,4 @@
-﻿namespace DevOpsDemo.Data;
+namespace DevOpsDemo.Data;
 
 public static class Database
 {
@@ -9,7 +9,7 @@ public static class Database
 
     internal static readonly string[] Contributors =
     {
-        "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
+        "Philipp G.", "Marcel B.", "Marco L.", "Fabian K.", "Daniel O.", "Roman K."
     };
     
     internal const string ClassName = "DVA-Praktikum";
