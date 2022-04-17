@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build
+    name: Build-Validation
     runs-on: windows-latest
     steps:
       - name: Set up JDK 11
@@ -34,7 +34,7 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Build and analyze
+      - name: Sonarcloud-Build-and-Analyse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
