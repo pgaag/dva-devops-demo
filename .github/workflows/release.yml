@@ -24,7 +24,6 @@ jobs:
       # Bumpr bumps version when pr is labeled
       - id: bumpr
         with:
-          github_token: ${{ secrets.MY_TOKEN_DEVOPS }}
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: haya14busa/action-bumpr@v1
 
@@ -34,8 +33,6 @@ jobs:
         if: "!steps.bumpr.outputs.skip"
         with:
           tag: ${{ steps.bumpr.outputs.next_version }}
-          github_token: ${{ secrets.MY_TOKEN_DEVOPS }}
-
       # Get tag name.
       - id: tag
         uses: haya14busa/action-cond@v1
