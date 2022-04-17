@@ -23,7 +23,6 @@ jobs:
 
       # Bumpr bumps version when pr is labeled
       - id: bumpr
-        with:
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: haya14busa/action-bumpr@v1
 
