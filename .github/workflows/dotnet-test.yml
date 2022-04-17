@@ -1,4 +1,4 @@
-name: 'dotnet test'
+name: 'Test-Pipeline'
 
 on:
   pull_request:
