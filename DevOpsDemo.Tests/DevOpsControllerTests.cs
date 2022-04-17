@@ -18,7 +18,7 @@ public class DevOpsControllerTests
     [Fact]
     public void Contributers_Are_Returned_Correctly()
     {
-        // Arrange 
+        // Arrange
         var mockLogger = new Mock<ILogger<DevOpsController>>();
         var controller = new DevOpsController(mockLogger.Object);
         
