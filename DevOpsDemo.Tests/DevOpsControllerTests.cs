@@ -47,7 +47,7 @@ public class DevOpsControllerTests
     }
     
     [Fact]
-    public async Task Practices_Returns_Not_Found_When_Null()
+    public void Practices_Returns_Not_Found_When_Null()
     {
         // Arrange
         var mockLogger = new Mock<ILogger<DevOpsController>>();
@@ -59,7 +59,7 @@ public class DevOpsControllerTests
         var resultObj = result as StatusCodeResult;
         
         // Assert
-        Assert.Equal(404, resultObj.StatusCode);
+        Assert.Equal(404, resultObj?.StatusCode);
     }
     
     [Fact]
