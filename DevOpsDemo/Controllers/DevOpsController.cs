@@ -35,7 +35,7 @@ public class DevOpsController : ControllerBase
         return Ok(new DevOpsInfo()
         {
             Contributers = Contributers,
-            Pratices = Practices,
+            Practices = Practices,
             ClassName = Class,
             ProjectState = State.Ongoing
         });

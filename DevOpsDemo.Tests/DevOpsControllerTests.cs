@@ -1,4 +1,5 @@
 ﻿using DevOpsDemo.Controllers;
+using DevOpsDemo.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -76,6 +77,27 @@ public class DevOpsControllerTests
         
         // Assert
         Assert.NotNull(resultObj?.Value);
+        Assert.Equal(200, resultObj.StatusCode);
+    }
+    
+    [Fact]
+    public void DevOpsInfo_Is_Returned_Correctly()
+    {
+        // Arrange
+        var mockLogger = new Mock<ILogger<DevOpsController>>();
+        var controller = new DevOpsController(mockLogger.Object);
+        
+        // Act
+        var result = controller.GetDevOpsInfo();
+        var resultObj = result as OkObjectResult;
+        
+        // Assert
+        Assert.NotNull(resultObj?.Value);
+        Assert.IsType<DevOpsInfo>(resultObj.Value);
+        var devOpsInfo = (DevOpsInfo)resultObj.Value;
+        Assert.NotNull(devOpsInfo.Contributers);
+        Assert.NotNull(devOpsInfo.Practices);
+        Assert.NotNull(devOpsInfo.ClassName);
         Assert.Equal(200, resultObj.StatusCode);
     }
     
