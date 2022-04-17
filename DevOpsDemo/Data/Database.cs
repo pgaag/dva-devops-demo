@@ -9,7 +9,7 @@ public static class Database
 
     internal static readonly string[] Contributors =
     {
-        "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
+        "PhilippG", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
     };
     
     internal const string ClassName = "DVA-Praktikum";
