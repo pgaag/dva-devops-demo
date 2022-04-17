@@ -1,4 +1,5 @@
-﻿using DevOpsDemo.Model;
+﻿using DevOpsDemo.Data;
+using DevOpsDemo.Model;
 using DevOpsDemo.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,25 +9,21 @@ namespace DevOpsDemo.Controllers;
 [Route("api/[controller]")]
 public class DevOpsController : ControllerBase
 {
-    public IEnumerable<string> Contributers = new List<string>()
-    {
-        "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
-    };
-    
-    public IEnumerable<string> Practices = new List<string>()
-    {
-        "Continuous Integration", "Continuous Development", "Monitoring", "Testing", "Wiki"
-    };
+    private IEnumerable<string>? _contributors;
 
-    public string Class = "DVA-Praktikum";
+    private IEnumerable<string>? _practices;
 
-    private const string Unused = null;
+    private string? _class;
 
     private readonly ILogger<DevOpsController>? _logger;
 
-    public DevOpsController(ILogger<DevOpsController>? logger)
+    public DevOpsController(ILogger<DevOpsController>? logger, bool useLocalDatabase = true)
     {
         _logger = Validate.NotNull(() => logger);
+        if (useLocalDatabase)
+        {
+            InitLocalData();
+        }
     }
 
     [HttpGet("info")]
@@ -34,42 +31,47 @@ public class DevOpsController : ControllerBase
     {
         return Ok(new DevOpsInfo()
         {
-            Contributers = Contributers,
-            Practices = Practices,
-            ClassName = Class,
+            Contributers = _contributors,
+            Practices = _practices,
+            ClassName = _class,
             ProjectState = State.Ongoing
         });
     }
     
-    [HttpGet("contributers")]
-    public IActionResult GetContributers()
+    [HttpGet("contributors")]
+    public IActionResult GetContributors()
     {
-        return Ok(Contributers);
+        if (_contributors == null)
+        {
+            return NotFound();
+        }
+        return Ok(_contributors);
     }
     
     [HttpGet("practices")]
     public IActionResult GetPractices()
     {
-        if (Practices != null)
+        if (_practices == null)
         {
-            return Ok(Practices);
+            return NotFound();
         }
-        return NotFound();
+        return Ok(_practices);
     }
-    
-    [HttpGet("practicesv2")]
-    public IActionResult GetPracticesDuplication()
-    {
-        if (Practices != null)
-        {
-            return Ok(Practices);
-        }
-        return NotFound();
-    }
-    
+
     [HttpGet("class")]
     public IActionResult GetClass()
     {
-        return Ok(Class);
+        if (_class == null)
+        {
+            return NotFound();
+        }
+        return Ok(_class);
+    }
+
+    private void InitLocalData()
+    {
+        _contributors = Database.Contributors;
+        _practices = Database.Practices;
+        _class = Database.ClassName;
     }
 }
