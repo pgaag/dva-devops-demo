@@ -12,5 +12,5 @@ public static class Database
         "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
     };
     
-    internal static string ClassName = "DVA-Praktikum";
+    internal const string ClassName = "DVA-Praktikum";
 }
