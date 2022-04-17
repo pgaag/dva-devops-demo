@@ -8,17 +8,17 @@ namespace DevOpsDemo.Controllers;
 [Route("api/[controller]")]
 public class DevOpsController : ControllerBase
 {
-    private static readonly string[] Contributers = 
+    public IEnumerable<string> Contributers = new List<string>()
     {
         "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
     };
     
-    private static readonly string[] Practices = 
+    public IEnumerable<string> Practices = new List<string>()
     {
         "Continuous Integration", "Continuous Development", "Monitoring", "Testing", "Wiki"
     };
 
-    private const string Class = "DVA-Praktikum";
+    public string Class = "DVA-Praktikum";
 
     private const string Unused = null;
 
@@ -30,46 +30,46 @@ public class DevOpsController : ControllerBase
     }
 
     [HttpGet("info")]
-    public DevOpsInfo GetDevOpsInfo()
+    public async Task<IActionResult> GetDevOpsInfo()
     {
-        return new DevOpsInfo()
+        return Ok(new DevOpsInfo()
         {
             Contributers = Contributers,
             Pratices = Practices,
             ClassName = Class,
             ProjectState = State.Ongoing
-        };
+        });
     }
     
     [HttpGet("contributers")]
-    public IEnumerable<string> GetContributers()
+    public async Task<IActionResult> GetContributers()
     {
-        return Contributers;
+        return Ok(Contributers);
     }
     
     [HttpGet("practices")]
-    public IEnumerable<string> GetPractices()
+    public async Task<IActionResult> GetPractices()
     {
-        if (Contributers != null)
+        if (Practices != null)
         {
-            return Contributers;
+            return Ok(Practices);
         }
-        return new List<string>() { "None Given"};
+        return NotFound();
     }
     
     [HttpGet("practicesv2")]
-    public IEnumerable<string> GetPracticesDuplication()
+    public async Task<IActionResult> GetPracticesDuplication()
     {
-        if (Contributers != null)
+        if (Practices != null)
         {
-            return Contributers;
+            return Ok(Practices);
         }
-        return new List<string>() { "None Given"};
+        return NotFound();
     }
     
     [HttpGet("class")]
-    public string GetClass()
+    public async Task<IActionResult> GetClass()
     {
-        return Class;
+        return Ok(Class);
     }
 }

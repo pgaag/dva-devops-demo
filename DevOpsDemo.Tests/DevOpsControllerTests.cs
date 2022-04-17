@@ -1,4 +1,5 @@
 ﻿using DevOpsDemo.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -22,12 +23,59 @@ public class DevOpsControllerTests
         
         // Act
         var result = controller.GetContributers();
+        var resultObj = result.Result as OkObjectResult;
         
         // Assert
-        string[] Contributers = 
-        {
-            "Philipp", "Marcel", "Marco", "Fabian", "Daniel", "Roman"
-        };
-        Assert.Equal(result, Contributers);
+        Assert.NotNull(resultObj?.Value);
+        Assert.Equal(200, resultObj.StatusCode);
     }
+    
+    [Fact]
+    public void DVA_Class_Is_Returned_Correctly()
+    {
+        // Arrange
+        var mockLogger = new Mock<ILogger<DevOpsController>>();
+        var controller = new DevOpsController(mockLogger.Object);
+        
+        // Act
+        var result = controller.GetClass();
+        var resultObj = result.Result as OkObjectResult;
+        
+        // Assert
+        Assert.NotNull(resultObj?.Value);
+        Assert.Equal(200, resultObj.StatusCode);
+    }
+    
+    [Fact]
+    public async Task Practices_Returns_Not_Found_When_Null()
+    {
+        // Arrange
+        var mockLogger = new Mock<ILogger<DevOpsController>>();
+        var controller = new DevOpsController(mockLogger.Object);
+        controller.Practices = null;
+        
+        // Act
+        var result = controller.GetPractices();
+        var resultObj = result.Result as StatusCodeResult;
+        
+        // Assert
+        Assert.Equal(404, resultObj.StatusCode);
+    }
+    
+    [Fact]
+    public void Practices_Are_Returned_Correctly()
+    {
+        // Arrange
+        var mockLogger = new Mock<ILogger<DevOpsController>>();
+        var controller = new DevOpsController(mockLogger.Object);
+        
+        // Act
+        var result = controller.GetPractices();
+        var resultObj = result.Result as OkObjectResult;
+        
+        // Assert
+        Assert.NotNull(resultObj?.Value);
+        Assert.Equal(200, resultObj.StatusCode);
+    }
+    
 }
