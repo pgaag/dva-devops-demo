@@ -1,4 +1,4 @@
-name: Create release
+name: 'GitHub-Release-Pipeline'
 
 # Taken from https://github.com/haya14busa/action-bumpr/blob/master/.github/workflows/release.yml
 #
