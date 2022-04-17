@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: run tests
+    name: 'PR-Tests'
     runs-on: ubuntu-latest
 
     steps:
