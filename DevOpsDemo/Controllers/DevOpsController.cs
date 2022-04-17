@@ -1,4 +1,6 @@
-﻿using DevOpsDemo.Shared;
+﻿using DevOpsDemo.Data;
+using DevOpsDemo.Model;
+using DevOpsDemo.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevOpsDemo.Controllers;
@@ -7,51 +9,69 @@ namespace DevOpsDemo.Controllers;
 [Route("api/[controller]")]
 public class DevOpsController : ControllerBase
 {
-    private static readonly string[] Contributers = 
-    {
-        "Philipp", "Marcel", "Roman", "Fabian", "Daniel", "Roman"
-    };
-    
-    private static readonly string[] Practices = 
-    {
-        "Continuous Integration", "Continuous Development", "Monitoring", "Testing", "Wiki"
-    };
+    private IEnumerable<string>? _contributors;
 
-    private const string Class = "DVA-Praktikum";
+    private IEnumerable<string>? _practices;
+
+    private string? _class;
 
     private readonly ILogger<DevOpsController>? _logger;
 
-    public DevOpsController(ILogger<DevOpsController>? logger)
+    public DevOpsController(ILogger<DevOpsController>? logger, bool useLocalDatabase = true)
     {
         _logger = Validate.NotNull(() => logger);
+        if (useLocalDatabase)
+        {
+            InitLocalData();
+        }
     }
 
     [HttpGet("info")]
-    public DevOpsInfo GetDevOpsInfo()
+    public IActionResult GetDevOpsInfo()
     {
-        return new DevOpsInfo()
+        return Ok(new DevOpsInfo()
         {
-            Contributers = Contributers,
-            Pratices = Practices,
-            ClassName = Class
-        };
+            Contributers = _contributors,
+            Practices = _practices,
+            ClassName = _class,
+            ProjectState = State.Ongoing
+        });
     }
     
-    [HttpGet("contributers")]
-    public IEnumerable<string> GetContributers()
+    [HttpGet("contributors")]
+    public IActionResult GetContributors()
     {
-        return Contributers;
+        if (_contributors == null)
+        {
+            return NotFound();
+        }
+        return Ok(_contributors);
     }
     
     [HttpGet("practices")]
-    public IEnumerable<string> GetPractices()
+    public IActionResult GetPractices()
     {
-        return Contributers;
+        if (_practices == null)
+        {
+            return NotFound();
+        }
+        return Ok(_practices);
     }
-    
+
     [HttpGet("class")]
-    public string GetClass()
+    public IActionResult GetClass()
     {
-        return Class;
+        if (_class == null)
+        {
+            return NotFound();
+        }
+        return Ok(_class);
+    }
+
+    private void InitLocalData()
+    {
+        _contributors = Database.Contributors;
+        _practices = Database.Practices;
+        _class = Database.ClassName;
     }
 }
