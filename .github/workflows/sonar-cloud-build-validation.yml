@@ -40,16 +40,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"pgaag_dva-devops-demo" /o:"pgaag" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="**/*.coveragexml" /d:sonar.cs.vstest.reportsPaths="**/*.trx"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"pgaag_dva-devops-demo" /o:"pgaag" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="**/*.trx"
           dotnet build
-          dotnet test --collect "Code Coverage" --results-directory "TestsResults" --logger trx
-          Get-ChildItem -Recurse -Filter "*.coverage" | Foreach-Object {
-            $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
-            $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
-            & $env:CodeCoveragePath\CodeCoverage.exe analyze /output:$output $_.FullName 
-          }
-          Get-ChildItem -Recurse -Filter "*.coveragexml" | Foreach-Object { 
-            $file = Join-Path -Path $_.Directory -ChildPath $_.Name
-            Copy-Item $file -Destination 'TestsResults'
-          }
+          dotnet test --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
