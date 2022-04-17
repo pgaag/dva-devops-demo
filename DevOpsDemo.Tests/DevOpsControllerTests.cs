@@ -11,7 +11,6 @@ public class DevOpsControllerTests
     [Fact]
     public void Constructor_Should_Throw_If_Logger_Is_Null()
     {
-        
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new DevOpsController(null));
     }
