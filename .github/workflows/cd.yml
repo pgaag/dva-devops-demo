@@ -1,6 +1,4 @@
-
-
-name: cd
+name: 'CD-Pipeline'
 
 env:
   AZURE_WEBAPP_NAME: dotnet-dva-devops-demo       # set this to the name of your Azure Web App
@@ -9,9 +7,8 @@ env:
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:

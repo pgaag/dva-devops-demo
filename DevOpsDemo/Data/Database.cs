@@ -1,4 +1,4 @@
-﻿namespace DevOpsDemo.Data;
+namespace DevOpsDemo.Data;
 
 public static class Database
 {
