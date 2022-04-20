@@ -91,7 +91,7 @@ public class DevOpsControllerTests
         
         // Assert
         Assert.Equal(404, resultObj?.StatusCode);
-    // }
+    }
     
     // [Fact]
     // public void Practices_Are_Returned_Correctly()
