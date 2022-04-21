@@ -7,7 +7,7 @@ using Xunit;
 
 namespace DevOpsDemo.Tests;
 
-public class DevOpsControllerTests
+public class DevOpsControllerVersionTwoTests
 {
     [Fact]
     public void Constructor_Should_Throw_If_Logger_Is_Null()
@@ -20,8 +20,8 @@ public class DevOpsControllerTests
     public void Contributors_Are_Returned_Correctly()
     {
         // Arrange 
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object);
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetContributors();
@@ -35,9 +35,9 @@ public class DevOpsControllerTests
     [Fact]
     public void Contributors_Returns_Not_Found_When_Null()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object, false);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
 
         // Act
         var result = controller.GetContributors();
@@ -50,9 +50,9 @@ public class DevOpsControllerTests
     [Fact]
     public void DVA_Class_Is_Returned_Correctly()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetClass();
@@ -66,9 +66,9 @@ public class DevOpsControllerTests
     [Fact]
     public void DVA_Class_Returns_Not_Found_When_Null()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object, false);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetClass();
@@ -96,9 +96,9 @@ public class DevOpsControllerTests
     [Fact]
     public void Practices_Are_Returned_Correctly()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetPractices();
@@ -112,9 +112,9 @@ public class DevOpsControllerTests
     [Fact]
     public void DevOpsInfo_Is_Returned_Correctly()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetDevOpsInfo();
@@ -133,9 +133,9 @@ public class DevOpsControllerTests
     [Fact]
     public void DevOpsInfo_Return_Not_Found_If_Null()
     {
-        // Arrange
-        var mockLogger = new Mock<ILogger<DevOpsController>>();
-        var controller = new DevOpsController(mockLogger.Object, false);
+        // Arrange 
+        var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
         
         // Act
         var result = controller.GetDevOpsInfo();
