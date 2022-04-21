@@ -68,26 +68,6 @@ public class DevOpsController : ControllerBase
         return Ok(_class);
     }
 
-    [HttpGet("practices-two")]
-    public IActionResult GetPracticesTwo()
-    {
-        if (_practices == null)
-        {
-            return NotFound();
-        }
-        return Ok(_practices);
-    }
-
-    [HttpGet("class-two")]
-    public IActionResult GetClassTwo()
-    {
-        if (_class == null)
-        {
-            return NotFound();
-        }
-        return Ok(_class);
-    }
-
     private void InitLocalData()
     {
         _contributors = Database.Contributors;
