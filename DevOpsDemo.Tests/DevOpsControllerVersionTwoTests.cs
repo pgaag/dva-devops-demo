@@ -37,7 +37,7 @@ public class DevOpsControllerVersionTwoTests
     {
         // Arrange 
         var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
-        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object, false);
 
         // Act
         var result = controller.GetContributors();
@@ -68,7 +68,7 @@ public class DevOpsControllerVersionTwoTests
     {
         // Arrange 
         var mockLogger = new Mock<ILogger<DevOpsControllerVersionTwo>>();
-        var controller = new DevOpsControllerVersionTwo(mockLogger.Object);
+        var controller = new DevOpsControllerVersionTwo(mockLogger.Object, false);
         
         // Act
         var result = controller.GetClass();
